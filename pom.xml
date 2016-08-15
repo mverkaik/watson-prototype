@@ -9,6 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <properties>
+        <skipTests>true</skipTests>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.ibm.watson.developer_cloud</groupId>
