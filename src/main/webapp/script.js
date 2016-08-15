@@ -117,12 +117,21 @@ var findRaces = function () {
     $.get(url)
         .done(function (response) {
             for (var i in response) {
-                racesContainer.append('<div>' +
-                    '<p class="race-name"><a href="' +  response[i].link + '">' + response[i].name + '</a></p>' +
-                    '<p class="race-location">' + response[i].location + '</p>' +
-                    '<p class="race-date">' + response[i].date + '</p>' +
-                    '</div>');
+                if (i > 0) {
+                    racesContainer.append('<div>' +
+                        '<p class="race-name"><a href="' + response[i].link + '">' + response[i].name + '</a></p>' +
+                        '<p class="race-location">' + response[i].location + '</p>' +
+                        '<p class="race-date">' + response[i].date + '</p>' +
+                        '</div>')
+                }
+                ;
             }
+            $('p.race-name a').click(function (e) {
+                e.preventDefault();
+                var id = getRaceId(e.target.href);
+                getRaceInfo(id);
+                //console.log(e);
+            });
             console.log('done');
         })
         .fail(function (response) {
@@ -132,14 +141,25 @@ var findRaces = function () {
 };
 
 
-var getRaceInfo = function () {
+var getRaceInfo = function (id) {
 
-    $.get('/api/races/race')
+    $.get('/api/races/race?id=' + id)
         .done(function (response) {
-            // console.log('got race info:');
-            // console.log(response);
-            $('#race-container').html(response);
+            var raceContainer = $('#race-container');
+            raceContainer.html(response);
+            raceContainer.css('display', 'block');
         });
+};
+
+
+var getRaceId = function (href) {
+
+    // example: http://localhost:8080/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon
+    var regex = /race\/([^\/]+)\//;
+    var found = href.match(regex);
+    var raceId = found[1];
+    console.log('race id: ' + raceId);
+    return raceId;
 };
 
 
@@ -165,5 +185,12 @@ $(function () {
         findRaces();
     });
 
-    getRaceInfo();
+    //getRaceInfo('E3DC5EF0-8A22-4414-B97E-E5C2D80881D6');
+
+    // var tempUrl = 'http://localhost:8080/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon';
+    // var regex = /race\/([^\/]+)\//;
+    // var found = tempUrl.match(regex);
+    // console.log(found[1]);
+    // getRaceInfo(found[1]);
+
 });

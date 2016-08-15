@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run Finder</title>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<h1>Welcome to Runner's World</h1>
+
+<h2>Let me help you find a run.</h2>
+
+<div id="wrapper">
+    <div class="main-container">
+        <!--
+        <div id="conversation-id"><b>conversation_id: </b>5495072</div>
+        <div id="client-id"><b>client_id: </b>5767473</div>
+        <div id="user-name"><b>userName: </b>Michiel</div>
+        <div id="zip"><b>zip: </b>10025</div>
+        <div id="race-type"><b>raceType: </b>marathon</div>
+        -->
+        <div id="dialog-container"><p class="watson-msg">Hello, welcome to Runners World!
+            I'm a virtual agent to help with your running goals.
+            What's your name?</p><p class="human-msg">Michiel</p><p class="watson-msg">Nice to meet you, Michiel!</p><p class="watson-msg">What kind of race do you want to run?</p><p class="human-msg">A marathon</p><p class="watson-msg">Great!
+            I can find races that are near you.
+            What is your ZIP code?</p><p class="human-msg">10025</p><p class="watson-msg">Thank you. Let me find some races.</p></div>
+        <div id="input-container">
+            <input type="text" id="human-input" name="human-input" placeholder="Type a response">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    <div class="main-container">
+        <!--<button id="find-races-btn">Find Races</button>-->
+        <div id="races-container">
+            <div><p class="race-name"><a href="/race/1963283/selftranscendence-marathon">Self-Transcendence Marathon</a></p><p class="race-location">Congers, New York</p><p class="race-date">Thu 08/25/2016</p></div><div><p class="race-name"><a href="/race/E1C12098-E527-4B97-8C96-A419E2B04D5B/sri-chinmoy-marathon">Sri Chinmoy Marathon</a></p><p class="race-location">Valley Cottage, NY</p><p class="race-date">Thu 08/25/2016</p></div><div><p class="race-name"><a href="/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon">The 2016 Rockaway Marathon</a></p><p class="race-location">Rockaway Park, NY</p><p class="race-date">Sat 10/08/2016</p></div><div><p class="race-name"><a href="/race/DDB4A22B-0C41-4131-89CA-56CC1E7E0549/yonkers-marathon-12-marathon-5k-run-5k-mud-run-obstacle-course-super-hero-5k-race">Yonkers Marathon, 1/2 Marathon, 5K Run, 5K Mud Run Obstacle Course, Super Hero 5K Race</a></p><p class="race-location">Yonkers, NY</p><p class="race-date">Sat 10/22/2016</p></div><div><p class="race-name"><a href="/race/9458D890-17F9-4F94-A19D-D901E49646F7/team-r4v-2016-tcs-new-york-city-marathon">Team R4V 2016 TCS New York City Marathon</a></p><p class="race-location">New York City, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/BB0EB945-8328-448E-A6F9-28A4D8148D47/world-run-day-2016-celebration--yonkers">World Run Day 2016 Celebration - Yonkers</a></p><p class="race-location">Yonkers, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/F3CC0910-5E0D-4CF1-B263-3FCCF80FB1D8/world-run-day-2016-celebration--newark">World Run Day 2016 Celebration - Newark</a></p><p class="race-location">Newark, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/DC8E236B-F1C6-43A2-8C53-241E1F665A9A/world-run-day-2016-celebration--jersey-city">World Run Day 2016 Celebration - Jersey City</a></p><p class="race-location">Jersey City, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/4F8F4176-0AAA-4E13-81AE-D98E64C96F06/world-run-day-2016-celebration--chatham">World Run Day 2016 Celebration - Chatham</a></p><p class="race-location">Chatham, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/8E09FA9D-770D-4CE2-BF74-31DFA4A28091/world-run-day-2016-celebration--new-york">World Run Day 2016 Celebration - New York</a></p><p class="race-location">New York, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/0E2AC662-AE30-4E43-A574-13D3041EA57C/world-run-day-2016-celebration--paterson">World Run Day 2016 Celebration - Paterson</a></p><p class="race-location">Paterson, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/04D01B85-D53D-42D6-89FC-D091E6B257ED/world-run-day-2016-celebration--greenwich">World Run Day 2016 Celebration - Greenwich</a></p><p class="race-location">Greenwich, CT</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/BE613C7C-034B-47CF-A0B9-F0FCAE17CBB8/world-run-day-2016-celebration--north-bergen">World Run Day 2016 Celebration - North Bergen</a></p><p class="race-location">North Bergen, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/0DAB1BED-E964-4BDB-8399-7D11ECEC909F/world-run-day-2016-celebration--union-city">World Run Day 2016 Celebration - Union City</a></p><p class="race-location">Union City, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/3770D29D-3CC1-4AAD-BDAB-32B0A163297D/world-run-day-2016-celebration--wayne">World Run Day 2016 Celebration - Wayne</a></p><p class="race-location">Wayne, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/65C2806B-9FE6-464C-9C43-49E7E2C179DB/world-run-day-2016-celebration--union">World Run Day 2016 Celebration - Union</a></p><p class="race-location">Union, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/E4CE2F29-2364-4932-A710-88792D489047/world-run-day-2016-celebration--bayonne">World Run Day 2016 Celebration - Bayonne</a></p><p class="race-location">Bayonne, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/2A1D22B4-3E38-4DAD-9B4C-98413680F6D6/world-run-day-2016-celebration--teaneck">World Run Day 2016 Celebration - Teaneck</a></p><p class="race-location">Teaneck, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/FB563ECD-76BD-4524-B86D-A7C46FDC6F79/world-run-day-2016-celebration--montclair">World Run Day 2016 Celebration - Montclair</a></p><p class="race-location">Montclair, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/99D08FB2-9741-4AD2-AF4C-EFB57CA36C60/world-run-day-2016-celebration--west-new-york">World Run Day 2016 Celebration - West New York</a></p><p class="race-location">West New York, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/76D108B0-88E3-4F32-A7C3-173972C9C3FD/world-run-day-2016-celebration--hoboken">World Run Day 2016 Celebration - Hoboken</a></p><p class="race-location">Hoboken, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/6A943721-F721-41BC-BA9D-F7310F3D29D8/world-run-day-2016-celebration--passaic">World Run Day 2016 Celebration - Passaic</a></p><p class="race-location">Passaic, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/F87DA569-1077-432D-87C6-9BC76C893C9A/world-run-day-2016-celebration--maplewood">World Run Day 2016 Celebration - Maplewood</a></p><p class="race-location">Maplewood, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/521CCC53-1912-4613-ACCE-849C7B03C04B/world-run-day-2016-celebration--mahwah">World Run Day 2016 Celebration - Mahwah</a></p><p class="race-location">Mahwah, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/31DA96AD-251B-45F9-8A4E-999BBA124FEC/world-run-day-2016-celebration--summit">World Run Day 2016 Celebration - Summit</a></p><p class="race-location">Summit, NJ</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/2DA0EFD4-B571-413E-B037-F0BF1E3DDFA6/world-run-day-2016-celebration--corona">World Run Day 2016 Celebration - Corona</a></p><p class="race-location">Corona, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/BAB902B8-1CFB-4141-B382-9CF6CBF3836F/world-run-day-2016-celebration--jamaica">World Run Day 2016 Celebration - Jamaica</a></p><p class="race-location">Jamaica, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/75EC3036-717D-4B50-B701-1F0A758364C7/world-run-day-2016-celebration--bronx">World Run Day 2016 Celebration - Bronx</a></p><p class="race-location">Bronx, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/0A24D4AE-45AA-40C9-96B1-44EE43290FE2/world-run-day-2016-celebration--ridgewood">World Run Day 2016 Celebration - Ridgewood</a></p><p class="race-location">Ridgewood, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/7F81F06E-CBD3-4BD9-A81E-FC578A785601/world-run-day-2016-celebration--staten-island">World Run Day 2016 Celebration - Staten Island</a></p><p class="race-location">Staten Island, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/3B9D9E47-D400-433C-9750-8F6B5D386B2F/world-run-day-2016-celebration--jackson-heights">World Run Day 2016 Celebration - Jackson Heights</a></p><p class="race-location">Jackson Heights, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/26E7BB93-DBC9-47AC-A070-482BE1E029A8/world-run-day-2016-celebration--elmhurst">World Run Day 2016 Celebration - Elmhurst</a></p><p class="race-location">Elmhurst, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/C75D48D4-73AF-42F1-94AC-84FAB2831E3E/world-run-day-2016-celebration--brooklyn">World Run Day 2016 Celebration - Brooklyn</a></p><p class="race-location">Brooklyn, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/B3BA0FB6-FA14-482E-8A35-9A630E0FE321/world-run-day-2016-celebration--flushing">World Run Day 2016 Celebration - Flushing</a></p><p class="race-location">Flushing, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/2989DF39-2DE8-4FBE-AF4B-808A3B03B60D/world-run-day-2016-celebration--nassau-county">World Run Day 2016 Celebration - Nassau County</a></p><p class="race-location">Nassau County, NY</p><p class="race-date">Sun 11/06/2016</p></div><div><p class="race-name"><a href="/race/31706618-3B76-4C22-AB83-769E2C603A2B/world-run-day-2016-celebration--forest-hills">World Run Day 2016 Celebration - Forest Hills</a></p><p class="race-location">Forest Hills, NY</p><p class="race-date">Sun 11/06/2016</p></div></div>
+    </div>
+    <div class="main-container">
+        <div id="race-container">
+            <h1 class="font18">Newport Liberty Half-Marathon</h1>
+            <div id="race-info">
+                <label>Location:</label>
+                <div class="value">
+                    Jersey City, NJ
+                </div>
+                <label>Date:</label>
+                <div class="value">
+                    Sun 09/18/2016
+                </div>
+                <label>Distances:</label>
+                <div class="value">
+                    Competition Walk/Run, Half-Marathon
+                </div>
+                <label>Event Size:</label>
+                <div class="value">
+                    400 Participants
+                </div>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Race</th>
+                        <th>Distance</th>
+                    </tr>
+                    <tr>
+                        <td>Sun 09/18/2016</td>
+                        <td>08:30 AM</td>
+                        <td>Competition Walk/Run (Half-Marathon)</td>
+                        <td>Half-Marathon</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <label>Web URL:</label>
+                <div class="value">
+                    <a href="http://www.newporthalfmarathon.com " target="_blank">http://www.newporthalfmarathon.com </a>
+                </div>
+                <label>Registration:</label>
+                <div class="value">
+                    <a href="http://www.newporthalfmarathon.com " target="_blank">http://www.newporthalfmarathon.com </a>
+                </div>
+                <label>Contact:</label>
+                <div class="value">
+                    <ul class="contact-info">
+                        <li>
+                            <div class="contact-label">
+                                Name:
+                            </div>
+                            <div class="contact-value name">
+                                Robert Barwick
+                            </div></li>
+                        <li>
+                            <div class="contact-label">
+                                Email:
+                            </div>
+                            <div class="contact-value email">
+                                Newportruns@barwickgroup.com
+                            </div></li>
+                        <li>
+                            <div class="contact-label">
+                                Phone:
+                            </div>
+                            <div class="contact-value phone">
+                                201-665-4005
+                            </div></li>
+                        <li>
+                            <div class="contact-label">
+                                Address:
+                            </div>
+                            <div class="contact-value address">
+                                Jersey City, NJ
+                                <br>Jersey City, New Jersey 07310
+                            </div></li>
+                    </ul>
+                </div>
+            </div></div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

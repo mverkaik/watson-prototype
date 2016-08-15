@@ -106,16 +106,20 @@ public class RaceRESTService {
     /**
      * Get race info
      *
-     * @return
+     * @param id The race identifier
+     * @return HTML fragment of race info
      * @throws IOException
      */
     @GET
     @Path("/race")
     @Produces(TEXT_HTML)
-    public String getRaceInfo() throws IOException {
+    public String getRaceInfo(@QueryParam("id") String id) throws IOException {
 
         String toReturn = "";
-        String url = "http://www.runnersworld.com/race/1965347/newport-liberty-halfmarathon";
+        String url = "http://www.runnersworld.com/race/" + id;
+
+        System.out.println("Getting race info from: " + url);
+
         Document doc = Jsoup.connect(url).get();
 
         Elements elements = doc.select("div.race-finder > h1.font18");
