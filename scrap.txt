@@ -1,0 +1,152 @@
+Dialog Service
+
+    curl Commands
+
+        Get dialogs
+
+        curl -s -u "9307be6e-5b07-4dfb-985b-dea20914f28a":"gDbqzMtQaKil" \
+        https://gateway.watsonplatform.net/dialog/api/v1/dialogs|jsonlint
+
+
+        Update dialog
+
+        curl -s -u "9307be6e-5b07-4dfb-985b-dea20914f28a":"gDbqzMtQaKil" \
+        -X PUT -F "file=@run-dialog.xml"  \
+        https://gateway.watsonplatform.net/dialog/api/v1/dialogs/ae0dac85-c1ce-4d27-8b1d-39c3c0f7e901
+
+        Get conversation session history
+
+        curl -s -u "9307be6e-5b07-4dfb-985b-dea20914f28a":"gDbqzMtQaKil" \
+        -F "date_from=2016-08-06 12:00:00" -F "date_to=2016-08-07 12:00:00" \
+        https://gateway.watsonplatform.net/dialog/api/v1/dialogs/ae0dac85-c1ce-4d27-8b1d-39c3c0f7e901/conversation|jsonlint
+
+        Set Profile Data
+
+        curl -s -u "9307be6e-5b07-4dfb-985b-dea20914f28a":"gDbqzMtQaKil" \
+        -X PUT --header 'Content-Type: application/json' --header 'Accept: text/html' -d '{ \
+          "client_id": 5254146, \
+          "name_values": [ \
+            { \
+              "name": "foo", \
+              "value": "bar" \
+            } \
+          ] \
+        }' 'https://watson-api-explorer.mybluemix.net/dialog/api/v1/dialogs/ae0dac85-c1ce-4d27-8b1d-39c3c0f7e901/profile' \
+
+        Get Profile Data
+
+        curl -s -u "9307be6e-5b07-4dfb-985b-dea20914f28a":"gDbqzMtQaKil" -X GET --header 'Accept: application/json' 'https://watson-api-explorer.mybluemix.net/dialog/api/v1/dialogs/ae0dac85-c1ce-4d27-8b1d-39c3c0f7e901/profile?client_id=5503659'
+
+
+
+
+    Primary Features
+
+        Nodes
+
+            Action Nodes
+
+                Profile rules to set profile variable values.
+                Stored as part of the conversation.
+                Example:
+
+                    <action varName="areaCode" operator="SET_TO">
+                        615
+                    </action>
+
+            Concept Nodes
+
+                Replace a specific word with all the words in a list.
+
+                Example:
+
+                    <folder label="Concepts">
+                        <concept>
+                            <grammar>
+                                <item>Virtual Agent</item>
+                                <item>VA</item>
+                                <item>Digital Agent</item>
+                            </grammar>
+                        </concept>
+                    </folder>
+
+            Default Nodes
+
+                Indicate the default actions of the dialog
+                Should be placed below all other nodes that need to be executed.
+                Example:
+
+                    <output>
+                        <prompt>
+                            <item>Hi, what is your question</item>
+                        </prompt>
+                        <getUserInput>
+                            <search ref="about"></search>
+                            <search ref="library"></search>
+                        </getUserInput>
+                        <default>
+                            <output>
+                                <prompt>
+                                    <item>I'm sorry. I don't understand your question.</item>
+                                </prompt>
+                            </output>
+                        </default>
+                    </output>
+
+            Entity Nodes
+
+                Capture several variations of user input
+                Example:
+
+                    <entity name="Sauce">
+                        <value name="Tomato Sauce" value="Tomato">
+                            <grammar>
+                                <item>gravy</item>
+                                <item>Red Sauce</item>
+                            </grammar>
+                        </value>
+                    </entity>
+
+            Folder Nodes
+
+                Groups similar content to organize the dialog
+                Example:
+
+                      <flow>
+                      	<folder label="Main">
+                      	    <!-- runs as soon as dialog is started -->
+                      	</folder>
+                      	<folder label="Library">
+                      	    <!-- stores the core info used by the dialog -->
+                      	</folder>
+                      	<folder label="Global">
+                      	    <!-- globally executed nodes & functions -->
+                      	</folder>
+                      	<folder label="Concepts">
+                      	    <!-- store local concepts used by the dialog -->
+                      	</folder>
+                      </flow>
+
+            Input Nodes
+
+                Example:
+
+                    <folder label="Library">
+                        <folder label="Live Content" id="folder_2449611">
+                            <input>
+                                <grammar>
+                                    <item>What type of toppings do you have?</item>
+                                    <item>$ What type of toppings do you have?</item>
+                                    <item>$ list of toppings</item>
+                                    <item>What * toppings * have</item>
+                                    <item>$ list toppings * available</item>
+                                    <item>$ what toppings do you have</item>
+                                </grammar>
+                                <output>
+                                    <prompt selectionType="RANDOM">
+                                        <item>We have Pepperoni, Mushrooms, and Sausage</item>
+                                    </prompt>
+                                </output>
+                            </input>
+                        </folder>
+                    </folder>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<dialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.1.xsd">
+    <flow>
+        <folder label="Main" id="Main">
+            <output>
+                <prompt>
+                    <item>
+                        Hello, welcome to Runners World!
+                        I'm a virtual agent to help with your running goals.
+                        What's your name?
+                    </item>
+                </prompt>
+            </output>
+            <getUserInput>
+                <input>
+                    <grammar>
+                        <item>$ (DYNAMIC_DATA)={userName}</item>
+                        <item>$ my name is (DYNAMIC_DATA)={userName}</item>
+                        <item>$ i am (DYNAMIC_DATA)={userName}</item>
+                    </grammar>
+                    <action varName="userName" operator="SET_TO">{userName.source}</action>
+                    <output>
+                        <prompt>
+                            <item>Nice to meet you, {userName}!</item>
+                        </prompt>
+                        <goto ref="race-type-dialog"/>
+                    </output>
+                </input>
+                <default>
+                    <output>
+                        <prompt>
+                            <item>
+                                I am sorry, I did not understand you :-(
+                            </item>
+                        </prompt>
+                    </output>
+                </default>
+            </getUserInput>
+
+            <!-- race-type-dialog -->
+
+            <output id="race-type-dialog">
+                <prompt>
+                    <item>What kind of race do you want to run?</item>
+                </prompt>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>marathon</item>
+                            <item>* marathon</item>
+                            <item>* marathon *</item>
+                            <item>marathon *</item>
+                        </grammar>
+                        <action varName="raceType" operator="SET_TO">marathon</action>
+                        <!--<goto ref="has-run-marathon-dialog"/>-->
+                        <goto ref="zip-dialog"/>
+                    </input>
+                    <default>
+                        <output>
+                            <prompt>
+                                <item>
+                                    I'm sorry, I did not understand.
+                                    You can say things like 'marathon' or 'half marathon'
+                                </item>
+                            </prompt>
+                        </output>
+                    </default>
+                </getUserInput>
+            </output>
+
+            <!-- zip-dialog -->
+
+            <output id="zip-dialog">
+                <prompt>
+                    <item>
+                        Great!
+                        I can find races that are near you.
+                        What is your ZIP code?
+                    </item>
+                </prompt>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>$ (DYNAMIC_DATA)={zip}</item>
+                        </grammar>
+                        <action varName="zip" operator="SET_TO">{zip.source}</action>
+                        <output>
+                            <prompt selectionType="SEQUENTIAL">
+                                <item>Thank you. Let me find some races.</item>
+                            </prompt>
+                            <goto ref="find-races-cmd"/>
+                        </output>
+                    </input>
+                </getUserInput>
+            </output>
+
+            <!-- find-races-cmd -->
+
+            <output id="find-races-cmd">
+                <prompt>
+                    <item>CMD:findRaces</item>
+                </prompt>
+            </output>
+
+            <!-- has-run-marathon-dialog -->
+
+            <output id="has-run-marathon-dialog">
+                <prompt selectionType="RANDOM">
+                    <item>
+                        So you want to run a marathon.
+                        Have you ran one before?
+                    </item>
+                </prompt>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>yes</item>
+                            <item>y</item>
+                        </grammar>
+                        <action varName="hasRunMarathon" operator="SET_TO">true</action>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>no</item>
+                            <item>n</item>
+                        </grammar>
+                        <action varName="hasRunMarathon" operator="SET_TO">false</action>
+                    </input>
+                </getUserInput>
+            </output>
+
+        </folder>
+        <folder label="Library" id="Library">
+            <folder label="Live Content" id="live-content">
+            </folder>
+        </folder>
+        <folder label="Concepts" id="Concepts"></folder>
+    </flow>
+    <entities>
+        <entity name="DYNAMIC_DATA">
+            <value name="DataCapture" value="DataCapture">
+                <grammar>
+                    <item>*</item>
+                </grammar>
+            </value>
+        </entity>
+    </entities>
+    <variables>
+        <var_folder name="Home">
+            <var name="userName" type="TEXT" initValue="visitor"/>
+            <var name="zip" type="TEXT"/>
+            <var name="hasRunMarathon" type="TEXT"/>
+            <var name="raceType" type="TEXT"/>
+            <var name="raceDate" type="DATETIME"/>
+        </var_folder>
+    </variables>
+</dialog>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<dialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.1.xsd">
+    <flow>
+        <folder label="Main" id="Main">
+            <output>
+                <prompt selectionType="RANDOM">
+                    <item>Hello, welcome to Mike's Pizza</item>
+                </prompt>
+                <goto ref="getUserInput_2449614"/>
+            </output>
+            <getUserInput id="getUserInput_2449614">
+                <search ref="folder_2449611"/>
+                <default>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>
+                                I am sorry, I did not understand
+                                you. Please try asking
+                                another one.
+                            </item>
+                        </prompt>
+                    </output>
+                </default>
+            </getUserInput>
+        </folder>
+        <folder label="Library" id="Library">
+            <folder label="Live Content" id="folder_2449611">
+                <input>
+                    <grammar>
+                        <item>What type of toppings do you have?</item>
+                        <item>$ What type of toppings do you have?</item>
+                        <item>$ list of toppings</item>
+                        <item>What * toppings * have</item>
+                        <item>$ list toppings * available</item>
+                        <item>$ what toppings do you have</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>We have Pepperoni, Mushrooms, and Sausage</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>What do you sell?</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>Are you looking for appetizers, entrees, or drinks?</item>
+                        </prompt>
+                        <input>
+                            <grammar>
+                                <item>drinks</item>
+                                <item>beverages</item>
+                                <item>liquid</item>
+                                <item>libation</item>
+                            </grammar>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>We have&lt;br/&gt;
+                                        Coke,
+                                        Sprite,
+                                        Sunkist,
+                                        Root Beer,
+                                        Ginger Ale,
+                                        Fresca,
+                                        Mello Yello,
+                                        Grape,
+                                        Dr Pepper,
+                                        Monster,
+                                        Moxie Energy,
+                                        and Bottled Spring water
+                                    </item>
+                                </prompt>
+                            </output>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>entrees</item>
+                                <item>meals</item>
+                                <item>main course</item>
+                                <item>food</item>
+                            </grammar>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>We have Chicken Parm,
+                                        Chicken Cutlet and Marinara Sauce,
+                                        Veal Parm,
+                                        Eggplant Parm,
+                                        Eggplant and Marinara Sauce,
+                                        Meatball, Marinara Sauce and Meatball,
+                                        Chicken &amp; Broccoli,
+                                        Chicken Kabob, Alfredo Sauce and Broccoli,
+                                        Steak &amp; Broccoli, and
+                                        Alfredo Sauce and Broccoli.
+                                    </item>
+                                </prompt>
+                            </output>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>appetizers</item>
+                                <item>snacks</item>
+                                <item>finger food</item>
+                                <item>appertif</item>
+                            </grammar>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>Chose from Fried Calamari, Mozarella Sticks, Stuffed potato skins, Jalepeno Poppers or Stuffed Mushrooms</item>
+                                </prompt>
+                            </output>
+                        </input>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>What type of pizza do you sell?</item>
+                    </grammar>
+                </input>
+            </folder>
+            <folder label="Storage" id="Storage"></folder>
+        </folder>
+        <folder label="Concepts" id="Concepts"></folder>
+    </flow>
+</dialog>

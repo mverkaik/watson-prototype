@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run Finder</title>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<h1>Welcome to Runner's World</h1>
+
+<h2>Let me help you find a run.</h2>
+
+<div id="wrapper">
+    <div class="main-container">
+        <div id="conversation-id"></div>
+        <div id="client-id"></div>
+        <div id="user-name"></div>
+        <div id="zip"></div>
+        <div id="race-type"></div>
+        <div id="dialog-container"></div>
+        <div id="input-container">
+            <input type="text" id="human-input" name="human-input" placeholder="Type a response">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    <div class="main-container">
+        <!--<button id="find-races-btn">Find Races</button>-->
+        <div id="races-container"></div>
+    </div>
+    <div class="main-container">
+        <div id="race-container"></div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

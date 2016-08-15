@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+}
+
+#dialog-container {
+    background-color: blue;
+    width: 300px;
+}
+
+[class*="-msg"] {
+    padding: 3px;
+    margin: 3px;
+    margin: 0px;
+}
+
+.watson-msg {
+    background-color: #AED6F1;
+
+}
+
+.human-msg {
+    background-color: #ABEBC6;
+}
+
+.main-container {
+    width: 305px;
+    height: 100%;
+    float: left;
+}
+
+.race-name {
+    font-weight: bold;
+}
