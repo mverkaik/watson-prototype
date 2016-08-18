@@ -5,6 +5,7 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,6 +92,16 @@ public class JSoupTest {
         if (firstElement != null) toReturn = toReturn + firstElement;
 
         System.out.println(toReturn);
+
+    }
+
+
+    @Test
+    public void dateCalcTest() {
+
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DATE, 90);
+        System.out.println(now.getTime());
 
     }
 

@@ -10,7 +10,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,11 +29,37 @@ public class RaceRESTService {
 
     /** URL template to query Runner's World db */
     private static final String URL_TEMPLATE = "http://www.runnersworld.com/race-finder/results" +
-            "?miles=25&zip={ZIP}&type={TYPE}&date_range[start]=2016-08-06&date_range[end]=2017-08-06";
+            "?miles=25&zip={ZIP}&type={TYPE}&date_range[start]={START}&date_range[end]={END}";
+
+    private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) " +
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36";
 
     /** REGEX to find race location in HTML */
     private static final Pattern LOCATION_PATTERN = Pattern.compile("</h2>([^<]*)");
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    /**
+     * Get start date as formatted string (yyy-MM-dd)
+     *
+     * @return
+     */
+    private String getStartDate() {
+
+        return dateFormat.format(new Date());
+    }
+
+    /**
+     * Get end date (90 days from current date) as formatted string (yyy-MM-dd)
+     *
+     * @return
+     */
+    private String getEndDate() {
+
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DATE, 90);
+        return dateFormat.format(now.getTime());
+    }
 
     /**
      * Construct a search URL
@@ -43,6 +72,8 @@ public class RaceRESTService {
         String url = URL_TEMPLATE;
         url = url.replace("{TYPE}", type);
         url = url.replace("{ZIP}", zip.toString());
+        url = url.replace("{START}", getStartDate());
+        url = url.replace("{END}", getEndDate());
         System.out.println("url = " + url);
         return url;
     }
@@ -74,7 +105,7 @@ public class RaceRESTService {
         StringBuilder sb = new StringBuilder();
 
         String searchURL = getSearchURL(type, zip);
-        Document doc = Jsoup.connect(searchURL).get();
+        Document doc = Jsoup.connect(searchURL).userAgent(USER_AGENT).get();
         Elements raceEls = doc.select("#race-finder-search-results > tbody > tr");
 
         for (Element raceEl : raceEls) {
@@ -120,7 +151,9 @@ public class RaceRESTService {
 
         System.out.println("Getting race info from: " + url);
 
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url)
+                .userAgent(USER_AGENT)
+                .get();
 
         Elements elements = doc.select("div.race-finder > h1.font18");
         Element firstElement = elements.first();

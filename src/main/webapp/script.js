@@ -141,6 +141,11 @@ var findRaces = function () {
 };
 
 
+/**
+ * Get race info
+ *
+ * @param id
+ */
 var getRaceInfo = function (id) {
 
     $.get('/api/races/race?id=' + id)
@@ -152,9 +157,15 @@ var getRaceInfo = function (id) {
 };
 
 
+/**
+ * Get race ID from URL
+ * example URL: http://localhost:8080/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon
+ *
+ * @param href
+ * @returns {*}
+ */
 var getRaceId = function (href) {
 
-    // example: http://localhost:8080/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon
     var regex = /race\/([^\/]+)\//;
     var found = href.match(regex);
     var raceId = found[1];
@@ -181,16 +192,8 @@ $(function () {
     // start conversation
     startConversation();
 
-    $('#find-races-btn').click(function () {
-        findRaces();
-    });
-
-    //getRaceInfo('E3DC5EF0-8A22-4414-B97E-E5C2D80881D6');
-
-    // var tempUrl = 'http://localhost:8080/race/A1829533-2018-4772-88FC-087A83DB77EF/the-2016-rockaway-marathon';
-    // var regex = /race\/([^\/]+)\//;
-    // var found = tempUrl.match(regex);
-    // console.log(found[1]);
-    // getRaceInfo(found[1]);
+    // $('#find-races-btn').click(function () {
+    //     findRaces();
+    // });
 
 });

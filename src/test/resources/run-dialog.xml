@@ -48,6 +48,39 @@
                 <getUserInput>
                     <input>
                         <grammar>
+                            <item>5k</item>
+                            <item>* 5k</item>
+                            <item>* 5k *</item>
+                            <item>5k *</item>
+                        </grammar>
+                        <action varName="raceType" operator="SET_TO">5k</action>
+                        <!--<goto ref="has-run-marathon-dialog"/>-->
+                        <goto ref="zip-dialog"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>10k</item>
+                            <item>* 10k</item>
+                            <item>* 10k *</item>
+                            <item>10k *</item>
+                        </grammar>
+                        <action varName="raceType" operator="SET_TO">10k</action>
+                        <!--<goto ref="has-run-marathon-dialog"/>-->
+                        <goto ref="zip-dialog"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>half marathon</item>
+                            <item>* half marathon</item>
+                            <item>* half marathon *</item>
+                            <item>half marathon *</item>
+                        </grammar>
+                        <action varName="raceType" operator="SET_TO">halfmarathon</action>
+                        <!--<goto ref="has-run-marathon-dialog"/>-->
+                        <goto ref="zip-dialog"/>
+                    </input>
+                    <input>
+                        <grammar>
                             <item>marathon</item>
                             <item>* marathon</item>
                             <item>* marathon *</item>
@@ -62,9 +95,11 @@
                             <prompt>
                                 <item>
                                     I'm sorry, I did not understand.
-                                    You can say things like 'marathon' or 'half marathon'
+                                    You can say  'marathon', 'half marathon',
+                                    '10k' or '5k'
                                 </item>
                             </prompt>
+                            <goto ref="race-type-dialog"/>
                         </output>
                     </default>
                 </getUserInput>
