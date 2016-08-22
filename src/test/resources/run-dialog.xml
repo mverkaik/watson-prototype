@@ -8,7 +8,7 @@
                 <prompt>
                     <item>
                         Hello, welcome to Runners World!
-                        I'm a virtual agent to help with your running goals.
+                        I'm a virtual agent to help you find a race to run and prepare for it.
                         What's your name?
                     </item>
                 </prompt>
@@ -54,7 +54,6 @@
                             <item>5k *</item>
                         </grammar>
                         <action varName="raceType" operator="SET_TO">5k</action>
-                        <!--<goto ref="has-run-marathon-dialog"/>-->
                         <goto ref="zip-dialog"/>
                     </input>
                     <input>
@@ -65,7 +64,6 @@
                             <item>10k *</item>
                         </grammar>
                         <action varName="raceType" operator="SET_TO">10k</action>
-                        <!--<goto ref="has-run-marathon-dialog"/>-->
                         <goto ref="zip-dialog"/>
                     </input>
                     <input>
@@ -76,7 +74,6 @@
                             <item>half marathon *</item>
                         </grammar>
                         <action varName="raceType" operator="SET_TO">halfmarathon</action>
-                        <!--<goto ref="has-run-marathon-dialog"/>-->
                         <goto ref="zip-dialog"/>
                     </input>
                     <input>
@@ -87,7 +84,6 @@
                             <item>marathon *</item>
                         </grammar>
                         <action varName="raceType" operator="SET_TO">marathon</action>
-                        <!--<goto ref="has-run-marathon-dialog"/>-->
                         <goto ref="zip-dialog"/>
                     </input>
                     <default>
@@ -137,15 +133,38 @@
                 <prompt>
                     <item>CMD:findRaces</item>
                 </prompt>
+                <goto ref="marathons-ran"/>
             </output>
 
-            <!-- has-run-marathon-dialog -->
+            <!-- marathons-ran -->
 
-            <output id="has-run-marathon-dialog">
+            <output id="marathons-ran">
                 <prompt selectionType="RANDOM">
                     <item>
-                        So you want to run a marathon.
-                        Have you ran one before?
+                        How many marathons have you run before?
+                    </item>
+                </prompt>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>$ (DYNAMIC_DATA)={marathonsRan}</item>
+                        </grammar>
+                        <action varName="marathonsRan" operator="SET_TO">{marathonsRan.source}</action>
+                        <if>
+                            <cond varName="marathonsRan" operator="GREATER_THEN">0</cond>
+                            <goto ref="run-history"/>
+                        </if>
+                        <goto ref="avg-miles-per-week"/>
+                    </input>
+                </getUserInput>
+            </output>
+
+            <!--run history -->
+
+            <output id="run-history">
+                <prompt selectionType="RANDOM">
+                    <item>
+                        Have you ran races for more than three years?
                     </item>
                 </prompt>
                 <getUserInput>
@@ -154,16 +173,126 @@
                             <item>yes</item>
                             <item>y</item>
                         </grammar>
-                        <action varName="hasRunMarathon" operator="SET_TO">true</action>
+                        <action varName="ranOverThreeYears" operator="SET_TO_YES"/>
+                        <goto ref="advanced-marathon-plan"/>
                     </input>
                     <input>
                         <grammar>
                             <item>no</item>
                             <item>n</item>
                         </grammar>
-                        <action varName="hasRunMarathon" operator="SET_TO">false</action>
+                        <action varName="ranOverThreeYears" operator="SET_TO_NO"/>
+                        <goto ref="intermediate-marathon-plan"/>
                     </input>
                 </getUserInput>
+            </output>
+
+            <!-- avg miles / week -->
+
+            <output id="avg-miles-per-week">
+                <prompt selectionType="RANDOM">
+                    <item>
+                        On average, do you run more than 15 miles per week?
+                    </item>
+                </prompt>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>yes</item>
+                            <item>y</item>
+                        </grammar>
+                        <action varName="runsOver15MilesPerWeek" operator="SET_TO_YES"/>
+                        <goto ref="first-timer-marathon-plan"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>no</item>
+                            <item>n</item>
+                        </grammar>
+                        <action varName="runsOver15MilesPerWeek" operator="SET_TO_NO"/>
+                        <goto ref="beginner-marathon-plan"/>
+                    </input>
+                </getUserInput>
+            </output>
+            
+            <!--first timer marathon plan -->
+            
+            <output id="first-timer-marathon-plan">
+                <prompt>
+                    <item>
+                        <![CDATA[
+                        We recommend the
+                        <a href="http://www.runnersworld.com/training/first-timers-marathon-plan"
+                            target="plan-details">
+                        First-Timer Marathon Training Plan
+                        </a>
+                        ]]>
+                    </item>
+                </prompt>
+            </output>
+
+            <!-- beginner marathon plan -->
+
+            <output id="beginner-marathon-plan">
+                <prompt>
+                    <item>
+                        <![CDATA[
+                            We recommend the
+                            <a href="http://www.runnersworld.com/training/beginners-marathon-plan"
+                                target="plan-details">
+                            Beginners Marathon Training Plan
+                            </a>
+                        ]]>
+                    </item>
+                </prompt>
+            </output>
+
+            <!-- intermediate marathon plan -->
+
+            <output id="intermediate-marathon-plan">
+                <prompt>
+                    <item>
+                        <![CDATA[
+                            We recommend the
+                            <a href="http://www.runnersworld.com/training/intermediate-marathon-plan"
+                                target="plan-details">
+                            Intermediate Marathon Training Plan
+                            </a>
+                        ]]>
+                    </item>
+                </prompt>
+            </output>
+
+            <!-- advanced marathon plan -->
+
+            <output id="advanced-marathon-plan">
+                <prompt>
+                    <item>
+                        <![CDATA[
+                            We recommend the
+                            <a href="http://www.runnersworld.com/training/advanced-marathon-plan"
+                                target="plan-details">
+                            Advanced Training Plan
+                            </a>
+                        ]]>
+                    </item>
+                </prompt>
+            </output>
+
+            <!-- 20 week marathon plan -->
+
+            <output id="20-week-marathon-plan">
+                <prompt>
+                    <item>
+                        <![CDATA[
+                            We recommend the
+                            <a href="http://www.runnersworld.com/training/20-week-marathon-plan"
+                                target="plan-details">
+                            20 Week Training Plan
+                            </a>
+                        ]]>
+                    </item>
+                </prompt>
             </output>
 
         </folder>
@@ -187,6 +316,9 @@
             <var name="userName" type="TEXT" initValue="visitor"/>
             <var name="zip" type="TEXT"/>
             <var name="hasRunMarathon" type="TEXT"/>
+            <var name="marathonsRan" type="NUMBER"/>
+            <var name="ranOverThreeYears" type="YESNO"/>
+            <var name="runsOver15MilesPerWeek" type="YESNO"/>
             <var name="raceType" type="TEXT"/>
             <var name="raceDate" type="DATETIME"/>
         </var_folder>

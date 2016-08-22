@@ -30,6 +30,7 @@ var converse = function () {
     var inputVal = inputField[0].value.trim();
     console.log('converse with watson: ' + inputVal);
     if (inputVal.length > 0) {
+        inputField.val(null);
         dialogContainer.append('<p class="human-msg">' + inputVal + '</p>');
         $.post(API_ROOT + '/conversation',
             'conversationID=' + dialog.conversation_id +
@@ -44,7 +45,6 @@ var converse = function () {
                         callback = findRaces;
                     }
                     else {
-                        callback = null;
                         dialogContainer.append('<p class="watson-msg">' + watsonMsg + '</p>');
                     }
                 }
@@ -53,10 +53,13 @@ var converse = function () {
             })
             .fail(function () {
                 console.log('failed to converse');
+            })
+            .always(function () {
+                inputField.val(null);
+                inputField.focus();
             });
-        inputField[0].value = '';
+
     }
-    inputField.focus();
 };
 
 
@@ -90,9 +93,6 @@ var getProfile = function (callback) {
     $.get(url)
         .done(function (response) {
             profile = response;
-            $('#user-name').html('<b>userName: </b>' + profile.userName);
-            $('#zip').html('<b>zip: </b>' + profile.zip);
-            $('#race-type').html('<b>raceType: </b>' + profile.raceType);
             console.log('got profile:');
             console.log(profile);
             if (typeof callback === 'function') {
@@ -191,9 +191,5 @@ $(function () {
 
     // start conversation
     startConversation();
-
-    // $('#find-races-btn').click(function () {
-    //     findRaces();
-    // });
 
 });

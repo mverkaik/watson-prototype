@@ -7,25 +7,38 @@
 </head>
 <body>
 
-<h1>Welcome to Runner's World</h1>
+<h1>IBM Watson Prototype Application</h1>
 
-<h2>Let me help you find a run.</h2>
+<ul>
+    <li>Conversation powered by <a href="https://www.ibm.com/watson/developercloud/dialog.html">IBM Watson Dialog Service</a></li>
+    <li>Races and race plans provided by <a href="http://www.runnersworld.com/">Runner's World</a></li>
+</ul>
+
+
+<h2>Let me help you find a race.</h2>
 
 <div id="wrapper">
     <div class="main-container">
-        <div id="conversation-id"></div>
-        <div id="client-id"></div>
-        <div id="user-name"></div>
-        <div id="zip"></div>
-        <div id="race-type"></div>
+        <div id="profile-data">
+            <div id="conversation-id"></div>
+            <div id="client-id"></div>
+            <div id="user-name"></div>
+            <div id="zip"></div>
+            <div id="race-type"></div>
+        </div>
         <div id="dialog-container"></div>
         <div id="input-container">
-            <input type="text" id="human-input" name="human-input" placeholder="Type a response">
-            <button id="send-btn">Send</button>
+            <div class="float-left">
+                <textarea type="text" id="human-input"
+                          name="human-input" placeholder="Type a response"></textarea>
+            </div>
+            <div class="float-right">
+                <button id="send-btn">Send</button>
+            </div>
+
         </div>
     </div>
     <div class="main-container">
-        <!--<button id="find-races-btn">Find Races</button>-->
         <div id="races-container"></div>
     </div>
     <div class="main-container">
